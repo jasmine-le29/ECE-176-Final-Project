@@ -21,7 +21,7 @@ loss_fn = nn.SmoothL1Loss()  # Robust loss function
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=3, verbose=True)
 
 # Training Settings
-num_epochs = 10  # Reduced to 10 epochs
+num_epochs = 10 
 best_loss = float('inf')
 
 # Logging Variables
@@ -30,9 +30,9 @@ losses, mae_values, rmse_values = [], [], []
 # Data Augmentation Function
 def augment_data(states, actions):
     if torch.rand(1) < 0.5:
-        states = torch.flip(states, dims=[-1])  # Flip image horizontally
-        actions = -actions  # Invert steering angle
-    actions += torch.randn_like(actions) * 0.01  # Add small Gaussian noise
+        states = torch.flip(states, dims=[-1])  
+        actions = -actions 
+    actions += torch.randn_like(actions) * 0.01  
     return states, actions
 
 for epoch in range(num_epochs):
